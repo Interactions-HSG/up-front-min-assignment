@@ -1,5 +1,9 @@
 /**
  * Charging a card at most once, however many times the client asks.
+ *
+ * The network is the problem. A client that does not hear back cannot tell a
+ * lost request from a lost reply, so it retries — and the retry must not
+ * charge again. `charge` is the part with a decision in it.
  */
 
 export class Payments {
@@ -9,14 +13,8 @@ export class Payments {
     this.seen = new Map();
   }
 
+  /** The gateway's receipt for this key, charging at most once. */
   async charge(key, amount) {
-    // Already charged? Hand back what the gateway said the first time.
-    if (this.seen.has(key)) {
-      return this.seen.get(key);
-    }
-
-    const receipt = await this.gateway.charge(amount);
-    this.seen.set(key, receipt);
-    return receipt;
+    throw new Error('not implemented');
   }
 }
