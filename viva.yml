@@ -1,0 +1,21 @@
+version: 1
+assignment: up-front-min
+
+goals:
+  - id: what-makes-it-idempotent
+    level: analyse
+    goal: >
+      Trace, through your own code, the two orderings of "record the key" and
+      "call the gateway", and work out which one can charge a card twice.
+
+  - id: key-lifetime
+    level: evaluate
+    goal: >
+      Judge how long an idempotency key should be remembered, and defend the
+      choice against a client that retries a week later.
+
+  - id: concurrent-duplicates
+    level: analyse
+    goal: >
+      Work out what your code does when two requests carrying the same key
+      overlap, rather than arrive one after the other.
